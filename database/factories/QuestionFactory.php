@@ -1,20 +1,22 @@
 <?php
 
-use Faker\Generator as Faker;
-use App\Model\Category;
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$factory->define(App\Model\Question::class, function (Faker $faker) {
+use App\Model;
+use Faker\Generator as Faker;
+
+$factory->define(\App\Question::class, function (Faker $faker) {
     $title = $faker->sentence;
     return [
         'title' => $title,
-        'slug' => str_slug($title),
+        'slug' => \Illuminate\Support\Str::slug($title),
         'body' => $faker->text,
         'category_id' => function () {
-            return Category::all()->random();
+            return \App\Category::all()->random();
         },
         'user_id' => function () {
             return \App\User::all()->random();
         }
-        
+
     ];
 });

@@ -1,13 +1,15 @@
 <?php
 
-use Faker\Generator as Faker;
-use App\Model\Question;
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$factory->define(App\Model\Reply::class, function (Faker $faker) {
+use App\Model;
+use Faker\Generator as Faker;
+
+$factory->define(\App\Reply::class, function (Faker $faker) {
     return [
         'body' => $faker->text,
         'question_id' => function () {
-            return Question::all()->random();
+            return \App\Question::all()->random();
         },
         'user_id' => function () {
             return \App\User::all()->random();
