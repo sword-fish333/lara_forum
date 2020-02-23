@@ -2,7 +2,7 @@
     <v-card
         color="grey lighten-4"
         flat
-        height="200px"
+        height="50px"
         tile
     >
         <v-toolbar dense>
@@ -12,13 +12,19 @@
 
             <v-spacer></v-spacer>
 
-           <v-toolbar-items class="hidden-sm-and-down">
-            <v-btn text>Forum</v-btn>
+           <div class="hidden-sm-and-down">
+               <router-link to="/forum">
+               <v-btn text>Forum</v-btn>
+               </router-link>
+               <router-link to="/question">
                <v-btn text>Ask Question</v-btn>
+               </router-link>
                <v-btn text>Category</v-btn>
-               <v-btn text>Login</v-btn>
-
-           </v-toolbar-items>
+               <router-link to="/login">
+               <v-btn text>
+                   Login</v-btn>
+               </router-link>
+           </div>
         </v-toolbar>
     </v-card>
 </template>
