@@ -1,6 +1,6 @@
 <template>
     <v-container>
-    <v-form
+    <v-form @submit.prevent="login"
         ref="form"
         lazy-validation
     >
@@ -14,13 +14,13 @@
         ></v-text-field>
 
         <v-text-field
-            v-model="form.email"
+            v-model="form.password"
             type="password"
             label="Password"
             required
         ></v-text-field>
 
-        <v-btn color="green" submit>Login</v-btn>
+        <v-btn color="green" type="submit">Login</v-btn>
     </v-form>
     </v-container>
 </template>
@@ -35,8 +35,12 @@
                     password:null
                 }
             }
+        },
+        methods:{
+            login(){
+           axios.post('/api/auth/login',this.form).then(res=>console.log(res.data)).catch(err=>console.log(err.response.data));
+            }
         }
-
     }
 </script>
 <style>

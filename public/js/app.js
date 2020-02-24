@@ -2034,6 +2034,15 @@ __webpack_require__.r(__webpack_exports__);
         password: null
       }
     };
+  },
+  methods: {
+    login: function login() {
+      axios.post('/api/auth/login', this.form).then(function (res) {
+        return console.log(res.data);
+      })["catch"](function (err) {
+        return console.log(err.response.data);
+      });
+    }
   }
 });
 
@@ -19786,7 +19795,16 @@ var render = function() {
     [
       _c(
         "v-form",
-        { ref: "form", attrs: { "lazy-validation": "" } },
+        {
+          ref: "form",
+          attrs: { "lazy-validation": "" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.login($event)
+            }
+          }
+        },
         [
           _c("v-text-field", {
             attrs: { type: "email", label: "E-mail", required: "" },
@@ -19802,15 +19820,15 @@ var render = function() {
           _c("v-text-field", {
             attrs: { type: "password", label: "Password", required: "" },
             model: {
-              value: _vm.form.email,
+              value: _vm.form.password,
               callback: function($$v) {
-                _vm.$set(_vm.form, "email", $$v)
+                _vm.$set(_vm.form, "password", $$v)
               },
-              expression: "form.email"
+              expression: "form.password"
             }
           }),
           _vm._v(" "),
-          _c("v-btn", { attrs: { color: "green", submit: "" } }, [
+          _c("v-btn", { attrs: { color: "green", type: "submit" } }, [
             _vm._v("Login")
           ])
         ],
