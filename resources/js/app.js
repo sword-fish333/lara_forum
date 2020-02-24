@@ -3,10 +3,16 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 window.Vue = require('vue');
 
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
+import  User from './Helpers/User';
+import AppStorage from "./Helpers/AppStorage";
+window.User=User;
+console.log(User.id());
+window.AppStorage=AppStorage;
 
 require('./bootstrap');
 
