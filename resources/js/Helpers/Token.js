@@ -2,7 +2,7 @@ class Token{
     isValid(token){
        const payload=this.payload(token);
         if(payload){
-         if( payload.iss==='http://localhost:8000/api/auth/login' || payload.iss==='http://localhost:8000/api/auth/signup'){
+         if( payload.iss==='http://127.0.0.1:8000/api/auth/login' || payload.iss==='http://127.0.0.1:8000/api/auth/signup'){
             return  true;
          }
         }

@@ -6,7 +6,7 @@ class User{
      async login(data){
          try {
              const res = await axios.post('/api/auth/login', data);
-            this.responseAfterLogin(res.data);
+          return   this.responseAfterLogin(res.data);
          }catch(err){
              alert('Oops! Login error . Please try again')
          }
@@ -16,7 +16,10 @@ class User{
 
         if(Token.isValid(response.access_token)){
             AppStorage.store(response.access_token,response.user);
+            window.location='/forum';
+
         }
+return true;
     }
 
     hasToken(){
@@ -33,7 +36,8 @@ class User{
 
     logout(){
          AppStorage.clear();
-    }
+    window.location='/login';
+     }
 
     name(){
          if(this.loggedIn()){

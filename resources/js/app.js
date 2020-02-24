@@ -11,8 +11,8 @@ Vue.use(Vuetify);
 import  User from './Helpers/User';
 import AppStorage from "./Helpers/AppStorage";
 window.User=User;
-window.AppStorage=AppStorage;
-
+// window.AppStorage=AppStorage;
+window.EventBus=new Vue();
 require('./bootstrap');
 
 
