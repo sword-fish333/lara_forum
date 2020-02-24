@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SignupRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class AuthController extends Controller
         $this->middleware('jwt', ['except' => ['login','signup']]);
     }
 
-    public function signup(Request $request){
+    public function signup(SignupRequest $request){
 
         User::create($request->all());
 

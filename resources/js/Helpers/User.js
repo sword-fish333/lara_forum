@@ -15,10 +15,8 @@ class User{
     responseAfterLogin(response){
 
         if(Token.isValid(response.access_token)){
-
             AppStorage.store(response.access_token,response.user);
         }
-
     }
 
     hasToken(){
