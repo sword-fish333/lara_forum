@@ -24,6 +24,9 @@
             question
         },
        async created() {
+            if(!User.loggedIn()){
+                this.$router.push('/login');
+            }
            try{
             const res=await axios.get('/api/question');
             this.questions=res.data.data;

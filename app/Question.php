@@ -9,6 +9,12 @@ class Question extends Model
 {
     protected $guarded=[];
 
+    protected static function boot(){
+        parent::boot();
+        static::creating(function($question){
+            $question->slug=Str::slug($question->title);
+        });
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -27,11 +33,11 @@ class Question extends Model
         return 'slug';
     }
 
-    public function setTitleAttribute($value)
-    {
-        $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
-    }
+//    public function setTitleAttribute($value)
+//    {
+//        $this->attributes['title'] = $value;
+//        $this->attributes['slug'] = Str::slug($value);
+//    }
 
     public function getPathAttribute(){
         return "/question/$this->slug";

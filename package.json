@@ -24,6 +24,7 @@
     "webpack": "^4.41.6"
   },
   "dependencies": {
+    "vue-simplemde": "^1.0.4",
     "vuetify": "^2.2.14"
   },
   "optionalDependencies": {

@@ -1,5 +1,5 @@
 <template>
-<show-question :data="question"></show-question>
+<show-question :question="question"></show-question>
 </template>
 
 <script>
@@ -8,7 +8,7 @@
         components: {ShowQuestion},
         data(){
             return{
-                question:{}
+                question:null
             }
         },
         async created() {
