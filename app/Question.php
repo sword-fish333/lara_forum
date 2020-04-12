@@ -7,8 +7,9 @@ use Illuminate\Support\Str;
 
 class Question extends Model
 {
-    protected $guarded=[];
+    protected $guarded=['created_at','updated_at'];
 
+    protected $with=['replies'];
     protected static function boot(){
         parent::boot();
         static::creating(function($question){
@@ -24,7 +25,7 @@ class Question extends Model
     }
 
     public function replies(){
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->latest();
     }
 
 

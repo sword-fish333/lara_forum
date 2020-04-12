@@ -67,7 +67,7 @@
                                'Authorization': `Bearer ${localStorage.getItem('token')}`
                             },
                         });
-                        console.log('res',res);
+
                         this.$router.push(res.data.path);
 
                     }catch(err){

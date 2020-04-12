@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card >
         <v-container fluid v-if="question">
         <v-card-title>
             <div>
@@ -8,15 +8,15 @@
 
             </div>
             <v-spacer></v-spacer>
-            <v-btn color="teal" class="white--text">5 replies</v-btn>
+            <v-btn color="teal" dark>{{question.reply_count}} replies</v-btn>
         </v-card-title>
             <v-card-text v-html="body" ></v-card-text>
             <v-card-actions v-if="owner">
 
-                <v-btn class="ma-2" small rounded>
+                <v-btn class="ma-2" small rounded @click="edit">
                     <v-icon color="orange">mdi-wrench</v-icon>
                 </v-btn>
-                <v-btn class="ma-2"  small rounded>
+                <v-btn class="ma-2"  small rounded @click="destroy">
                     <v-icon color="red">mdi-delete</v-icon>
                 </v-btn>
                 </v-card-actions>
@@ -41,6 +41,31 @@
             },
 
     },
+
+        methods:{
+            destroy(){
+                try {
+                    axios.delete(`/api/question/${this.question.slug}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                    });
+
+                    this.$router.push('/forum')
+                }catch(err){
+                    if(err.response){
+                        alert(err.response.data)
+                    }else{
+                        alert(err)
+                    }
+                }
+            },
+            edit(){
+               EventBus.$emit('startEditing');
+
+            }
+        }
 
 
     }

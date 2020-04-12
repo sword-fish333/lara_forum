@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SignupRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -33,7 +34,10 @@ class AuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
+        if(!User::where('email',request('email'))->exists()){
+            return response()->json(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
 
+        }
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

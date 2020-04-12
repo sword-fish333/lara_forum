@@ -45,12 +45,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
+      $category = Category::create([
             'name'=>$request->name,
             'slug'=>Str::slug($request->name)
         ]);
 
-        return  response('Category created successfully!',Response::HTTP_ACCEPTED);
+        return  response(new CategoryResource($category),Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -84,7 +84,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+
+        $category->update([
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name)
+        ]);
+
+        return  response(new CategoryResource($category),Response::HTTP_ACCEPTED );
     }
 
     /**
@@ -95,6 +101,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return  response('Category deleted successfully!',Response::HTTP_ACCEPTED);
+
     }
 }

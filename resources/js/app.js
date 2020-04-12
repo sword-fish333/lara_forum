@@ -15,6 +15,11 @@ import VueSimplemde from 'vue-simplemde'
 Vue.component('vue-simplemde', VueSimplemde)
 import  User from './Helpers/User';
 
+export default new Vuetify({
+    icons: {
+        iconfont: 'fa', // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+    },
+})
 import AppStorage from "./Helpers/AppStorage";
 window.User=User;
 // window.AppStorage=AppStorage;

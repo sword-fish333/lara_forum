@@ -8,7 +8,13 @@ class User{
              const res = await axios.post('/api/auth/login', data);
           return   this.responseAfterLogin(res.data);
          }catch(err){
-             alert('Oops! Login error . Please try again')
+             console.log('err',err);
+           if(err){
+            alert(err.response.data.error);
+           }else{
+               alert('Oops! Login error . Please try again')
+
+           }
          }
     }
 
@@ -54,6 +60,10 @@ return true;
 
     owner(id){
          return this.id()===id;
+    }
+
+    admin(){
+         return this.id()===44
     }
 }
 
